@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO work in Progress</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js">
+</head>
+<body class="bg-success">
+    <div class="container">
+        <div class="row-mt-5 py-10">
+            <div class="col-md-8.offsets-md-200">
+                <div class="card">
+                    <div class="card-header shadow-sm bg-info">
+                        <h1 class="display-5 text.info"><i class="fas fa-check-double"> TODO</i></h1>
+
+                    </div>
+                    <div class="card.body">
+                         <ul class="list-group">
+                            <li class="list-group-item">
+                                <form action="{% url 'lists' %}" method="POST" autocomplete="off" autocapitalize="on">
+                                    {% csrf_token %}
+                                    <div class="input-group bg-warning py-3">
+                                        <input type="text.warning" class="form-control" name="contents">
+                                            <div class="input-group-append text-info">
+                                                <span class="input-group-text bg-white py-0">
+                                                    <button type="submit" class="btn btn-sm text-success">
+                                                        <i class="fa fa-plus-circle fa-lg"><h6>ADD</h6></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                    </div>
+                                </form>
+                                </li>
+                                {% for i in todo_list %}
+                            <li class="list-group-item">{{i.content}}
+                                 <form action="{% url 'done' i.id%}" method="post" class="float-right d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn">
+                                        <i class="far fa-trash-alt fa-lg text-danger float-right">DONE</i>
+                                    </button>
+                                </form>
+                                </li>
+                            {% empty %}
+                            <li class="list-group-item">
+                                <span class="font-italic">No todo item found.</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>ASMAT WE CAN USE THIS AS A TODO APP</h1>
+    <h1>OR AS A CHAT AND DELETE :) </h1>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
